@@ -42,7 +42,7 @@ router.post('/', async (req, res) => {
             })
         }
     } catch (error) {
-        console.log(error)
+        console.log(error);
         res.status(500).json({
             message: "Error while saving the post to the database"
         })
@@ -55,8 +55,7 @@ router.put('/:id', async (req, res) => {
         })
     }
     try {
-        const post = await Posts.update(req.params.id, req.body)
-        // console.log(post);
+        const post = await Posts.update(req.params.id, req.body);
         if (post) {
             res.status(200).json(post);
         } else {
@@ -65,7 +64,7 @@ router.put('/:id', async (req, res) => {
             })
         }
     } catch (error) {
-        console.log(error)
+        console.log(error);
         res.status(500).json({
             error: "The post information could not be modified."
         })
@@ -73,7 +72,7 @@ router.put('/:id', async (req, res) => {
 });
 router.delete('/:id', async (req, res) => {
     try {
-        const count = await Posts.remove(req.params.id)
+        const count = await Posts.remove(req.params.id);
         if (count > 0) {
             res.status(200).json({
                 message: 'Post has been deleted'
