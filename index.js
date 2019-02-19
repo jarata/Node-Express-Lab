@@ -1,22 +1,3 @@
-const express = require('express');
-const Posts = require('./data/db')
+const server = require('./server.js');
 
-const router = express.Router();
-
-router.get('/', async (req, res) => {
-
-});
-router.get('/:id', async (req, res) => {
-
-});
-router.post('/', async (req, res) => {
-
-});
-router.put('/:id', async (req, res) => {
-
-});
-router.delete('/:id', async (req, res) => {
-
-});
-
-module.exports = router;
+server.listen(5000, () => console.log('Server running at http://localhost:5000'));

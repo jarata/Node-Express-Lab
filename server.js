@@ -1,9 +1,13 @@
 const express = require('express');
-const database = require('./data/db');
+const postsRouter = require('./router');
 
 const server = express();
 
 server.use(express.json());
+server.use('/api/posts', postsRouter);
 
+server.get('/', async (req, res) => {
+    res.send(`<h2>Posts is online!</h2>`)
+})
 
-server.listen(5000, () => console.log('Server running at http://localhost:5000'));
+module.exports = server;
