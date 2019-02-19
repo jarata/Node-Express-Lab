@@ -31,9 +31,17 @@ router.get('/:id', async (req, res) => {
         });
     }
 });
-// router.post('/', async (req, res) => {
-//
-// });
+router.post('/', async (req, res) => {
+    try {
+        const post = await Posts.insert(req.body);
+        res.status(201).json(post);
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({
+            errorMessage: "Please provide title and contents for the post."
+        })
+    }
+});
 // router.put('/:id', async (req, res) => {
 //
 // });
