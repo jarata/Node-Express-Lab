@@ -45,8 +45,36 @@ router.post('/', async (req, res) => {
 // router.put('/:id', async (req, res) => {
 //
 // });
-// router.delete('/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
+    try {
+        const count = await Posts.remove(req.params.id)
+        if (count > 0) {
+            res.status(200).json({
+                message: 'Post has been deleted'
+            })
+        } else {
+            res.status(404).json({
+                message: "The post with the specified ID does not exist."
+            })
+        }
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            error: "The post could not be removed"
+        })
+    }
+});
+
+//When the client makes a DELETE request to /api/posts/:id:
 //
-// });
+// If the post with the specified id is not found:
+//
+// return HTTP status code 404 (Not Found).
+// return the following JSON object: { message: "The post with the specified ID does not exist." }.
+// If there's an error in removing the post from the database:
+//
+// cancel the request.
+// respond with HTTP status code 500.
+// return the following JSON object: { error: "The post could not be removed" }.
 
 module.exports = router;
