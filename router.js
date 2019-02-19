@@ -49,8 +49,14 @@ router.post('/', async (req, res) => {
     }
 });
 router.put('/:id', async (req, res) => {
+    if (!req.body.title || !req.body.contents) {
+        res.status(400).json({
+            errorMessage: "Please provide title and contents for the post."
+        })
+    }
     try {
         const post = await Posts.update(req.params.id, req.body)
+        // console.log(post);
         if (post) {
             res.status(200).json(post);
         } else {
